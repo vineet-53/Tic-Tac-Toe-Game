@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic tac toe game</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="overflow-x-hidden box-border">
+    <section class="w-screen h-screen font-mulish min-w-[300px]">
+      <div
+        class="flex w-full h-full flex-col gap-y-10 items-center justify-between py-7"
+      >
+        <!-- current player status  -->
+        <div
+          class="game-status w-max bg-blur text-white rounded-lg bg-opacity-60 h-max p-2 px-5 hover:text-slate-200"
+        >Tic Tac Toe Game</div>
+        <!-- main box  -->
+        <div
+          class="game-box bg-blur w-52 h-52 grid grid-cols-3 grid-rows-3 overflow-hidden p-6"
+        >
+          <div
+            class="box cursor-pointer text-3xl text-slate-200 flex justify-center items-center h-full hover:text-slate-300"
+            data-box="1"
+          ></div>
+          <div
+            class="box cursor-pointer text-3xl text-slate-200 flex justify-center items-center h-full hover:text-slate-300 border-left-right-2"
+            data-box="2"
+          ></div>
+          <div
+            class="box cursor-pointer text-3xl text-slate-200 flex justify-center items-center h-full hover:text-slate-300"
+            data-box="3"
+          ></div>
+          <div
+            class="box cursor-pointer text-3xl text-slate-200 flex justify-center items-center h-full hover:text-slate-300 border-top-bottom-2"
+            data-box="4"
+          ></div>
+          <div
+            data-box="5"
+            class="box cursor-pointer text-3xl text-slate-200 flex justify-center items-center h-full hover:text-slate-300 border-all-2"
+          ></div>
+          <div
+            class="box cursor-pointer text-3xl text-slate-200 flex justify-center items-center h-full hover:text-slate-300 border-top-bottom-2"
+            data-box="6"
+          ></div>
+          <div
+            data-box="7"
+            class="box cursor-pointer text-3xl text-slate-200 flex justify-center items-center h-full hover:text-slate-300"
+          ></div>
+          <div
+            data-box="8"
+            class="box cursor-pointer text-3xl text-slate-200 flex justify-center items-center h-full hover:text-slate-300 border-left-right-2"
+          ></div>
+          <div
+            data-box="9"
+            class="box cursor-pointer text-3xl text-slate-200 flex justify-center items-center h-full hover:text-slate-300"
+          ></div>
+        </div>
+
+        <!-- start game button -->
+        <div>
+          <button
+            class="border-2 border-transparent text-white p-2 bg-blur px-5 hover:text-slate-200 rounded-lg game-start-button"
+          >
+            Start Game
+          </button>
+          <button
+            class="hidden border-2 border-transparent text-white p-2 bg-blur px-5 hover:text-slate-200 rounded-lg game-stop-button"
+          >
+            Stop Game
+          </button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
