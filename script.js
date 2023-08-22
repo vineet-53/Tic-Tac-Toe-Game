@@ -16,6 +16,8 @@ let currentPlayer;
 let gameGrid;
 let gameProgress = false;
 let answer = null;
+let chanceCounter = 0;
+
 function clearUiValues() {
   boxes.forEach((box) => {
     box.textContent = "";
@@ -23,11 +25,16 @@ function clearUiValues() {
   });
 }
 function setGameInfo() {
-  answer == null
-    ? (gameInfo.textContent = "Tic Tac Toe Game")
-    : answer == ""
-    ? (gameInfo.textContent = `Current Player - ${currentPlayer}`)
-    : (gameInfo.textContent = `Winner -${answer}`);
+  if (answer == null) {
+    gameInfo.textContent = "Tic Tac Toe Game";
+  } else if (answer == "") {
+    if (chanceCounter == 9) {
+      gameInfo.textContent = `Game Draw`;
+      gameProgress = false;
+    } else gameInfo.textContent = `Current Player - ${currentPlayer}`;
+  } else {
+    gameInfo.textContent = `Winner -${answer}`;
+  }
   if (gameProgress) {
     startButton.classList.add("hidden");
     stopButton.classList.remove("hidden");
@@ -43,6 +50,7 @@ function initGame() {
   setGameInfo();
 }
 function startGame() {
+  chanceCounter = 0;
   answer = "";
   gameProgress = true;
   initGame();
@@ -50,6 +58,7 @@ function startGame() {
 }
 function stopGame() {
   answer = null;
+  chanceCounter = 0;
   gameProgress = false;
   clearUiValues();
   initGame();
@@ -61,7 +70,7 @@ function setWinner(winner, positions) {
   });
   gameProgress = false;
 }
-function checkTheWinner() {
+function checkTheWinner(chanceCounter) {
   winningPostions.forEach((positions) => {
     [firstIndex, secondIndex, thirdIndex] = positions;
     if (
@@ -79,6 +88,7 @@ function checkTheWinner() {
       setWinner(gameGrid[firstIndex], positions);
     }
   });
+  setGameInfo();
 }
 function nextPlayerTurn() {
   currentPlayer == "X" ? (currentPlayer = "O") : (currentPlayer = "X");
@@ -87,8 +97,10 @@ function nextPlayerTurn() {
 function handleClick(box, boxIndex) {
   box.textContent = currentPlayer;
   gameGrid[boxIndex] = `${currentPlayer}`;
+  chanceCounter++;
   //check the answer
-  checkTheWinner();
+
+  checkTheWinner(chanceCounter);
   nextPlayerTurn();
 }
 startButton.addEventListener("click", () => {
